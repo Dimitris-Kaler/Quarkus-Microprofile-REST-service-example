@@ -6,6 +6,17 @@ The project is built using Gradle and leverages REST Assured for integration tes
 If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
 
 
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Project Setup and Creation](#project-setup-and-creation)
+- [Installation and Running the Application](#installation-and-running-the-application)
+- [Endpoints](#endpoints)
+- [Package Configuration](#package-configuration)
+- [Testing](#testing)
+- [Dependencies](#dependencies)
+
+
 ## Project Overview
 
 **Quarkus Microprofile REST Service Example** is designed to help you learn how to build a RESTful service using Quarkus. The project covers:
