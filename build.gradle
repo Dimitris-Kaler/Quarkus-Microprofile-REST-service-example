@@ -14,13 +14,16 @@ dependencies {
     implementation 'io.quarkiverse.microprofile:quarkus-microprofile:3.4.0'
     implementation 'io.quarkus:quarkus-arc'
     testImplementation 'io.quarkus:quarkus-junit5'
-    testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
-    testImplementation 'org.codehaus.groovy:groovy-all:3.0.8'
+//    testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
+//    testImplementation 'org.codehaus.groovy:groovy-all:3.0.8'
 // https://mvnrepository.com/artifact/org.wiremock/wiremock-standalone
-    testImplementation 'org.wiremock:wiremock-standalone:3.3.1'
-    testImplementation('io.rest-assured:rest-assured:5.3.0') {
-        exclude group: 'org.apache.groovy'
-    }
+//    testImplementation 'org.wiremock:wiremock-standalone:3.3.1'
+    testImplementation('io.rest-assured:rest-assured:5.3.0')
+//            {
+//        exclude group: 'org.apache.groovy'
+//    }
+//    testImplementation 'io.quarkus:quarkus-junit5'
+
 
 }
 
@@ -43,14 +46,14 @@ compileJava {
 compileTestJava {
     options.encoding = 'UTF-8'
 }
-
-sourceSets {
-    test {
-        resources {
-            srcDirs = ['src/test/resources']
-        }
-    }
-}
+//
+//sourceSets {
+//    test {
+//        resources {
+//            srcDirs = ['src/test/resources']
+//        }
+//    }
+//}
 
 tasks.withType(Copy) {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
