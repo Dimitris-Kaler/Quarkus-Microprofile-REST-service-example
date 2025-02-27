@@ -19,6 +19,10 @@ import jakarta.ws.rs.core.Response;
 @Path("/")
 public class GreetingsResource {
 
+    public GreetingsResource(){
+
+    }
+
     /**
      * Returns a simple greeting message.
      *
