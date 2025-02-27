@@ -65,6 +65,7 @@ public class GreetingsResource {
         if (name == null || age == null) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
+
         return Response.ok(new Message("Hello my name is " + name + " and i'm " + age + " years old!")).build();
     }
 
