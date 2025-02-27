@@ -19,7 +19,7 @@ import jakarta.ws.rs.core.Response;
 @Path("/")
 public class GreetingsResource {
 
-    public GreetingsResource(){
+    public GreetingsResource() {
 
     }
 
@@ -56,7 +56,7 @@ public class GreetingsResource {
      * @param name the name provided in the query parameter
      * @param age  the age provided in the query parameter
      * @return a JSON response with a personalized greeting if both parameters are provided,
-     *         or a BAD_REQUEST response if either is missing.
+     * or a BAD_REQUEST response if either is missing.
      */
     @GET
     @Path("/greeting")
@@ -75,7 +75,7 @@ public class GreetingsResource {
      *
      * @param input the Message object parsed from the JSON request body
      * @return a JSON response with a personalized greeting if both fields are present,
-     *         or a BAD_REQUEST response if either field is missing.
+     * or a BAD_REQUEST response if either field is missing.
      */
     @POST
     @Path("/greet")
