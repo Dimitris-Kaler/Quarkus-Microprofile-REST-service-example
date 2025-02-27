@@ -81,4 +81,130 @@ To run the application in production mode:
 
 
 ## Endpoints
+### Root Endpoint
+- **Path:** /
+- **Method:** GET
+- **Description:** Returns a static greeting message.
+- **Response Example:**
+```json
+{
+"msg": "Hello World"
+}
+```
+### Path Parameter Greeting
+- **Path:** /greet/{name}
+- **Method:** GET
+- **Description:** Returns a greeting message that incorporates the name provided in the URL.
+- **Response Example:**
+```json
+{
+"msg": "Hello Dimitris!"
+}
+```
+### Query Parameter Greeting
+- **Path:** /greeting
+- **Method:** GET
+- **Description:** Returns a personalized greeting using the name and age query parameters. If either parameter is missing, it returns HTTP 400.
+- **Response Example (with valid parameters):**
+```json
+{
+"msg": "Hello my name is John and i'm 30 years old!"
+}
+```
+### Request Body Greeting
+- **Path:** /greet
+- **Method:** POST
+- **Description:** Accepts a JSON request body containing name and age to generate a greeting. Returns HTTP 400 if the request body is invalid.
+- **Response Example:**
+```json
+{
+"msg": "Hello my name is Bob Trench and i'm 25 old!"
+}
+```
+## Package Configuration
+The `build.gradle` file defines the project’s dependencies, plugins, and source sets. Below is a sample configuration:
+
+```gradle
+plugins {
+id 'java'
+id 'io.quarkus'
+id 'groovy'
+}
+
+repositories {
+mavenCentral()
+mavenLocal()
+}
+
+dependencies {
+implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+implementation 'io.quarkiverse.microprofile:quarkus-microprofile:3.4.0'
+implementation 'io.quarkus:quarkus-arc'
+testImplementation 'io.quarkus:quarkus-junit5'
+testImplementation('io.rest-assured:rest-assured:5.3.0')
+}
+
+group 'dim.kal'
+version '1.0.0-SNAPSHOT'
+
+java {
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+}
+
+test {
+systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+}
+
+compileJava {
+options.encoding = 'UTF-8'
+options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+options.encoding = 'UTF-8'
+}
+
+tasks.withType(Copy) {
+duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.named("processResources", Copy) {
+duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.named("processTestResources", Copy) {
+duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+```
+
+## Testing
+The project includes integration tests written with JUnit 5 and REST Assured. These tests run against an embedded Quarkus server (enabled by the @QuarkusTest annotation) and verify that each endpoint returns the expected status codes and responses.
+
+### Example Test Scenarios
+- **Hello World Test:**
+Verifies that a GET request to `/` returns HTTP 200 with the message `"Hello World"`.
+
+- **Path Parameter Test:**
+Iterates over an array of names to test the `/greet/{name}` endpoint and verifies that it returns the correct greeting for each name.
+
+- **Query Parameter Test:**
+Uses a two-dimensional array to test valid query parameters for `/greeting` and also tests scenarios where parameters are missing (expecting a 400 status code).
+
+- **POST Request Tests:**
+Verifies that sending a valid JSON body to `/greet` returns the expected greeting, while invalid or missing bodies return appropriate error codes.
+
+Run tests with:
+
+```bash
+./gradlew clean test
+```
+## Dependencies
+Key dependencies used in this project:
+
+- **Quarkus:** Provides the runtime, dependency injection (CDI), and MicroProfile features.
+- **Quarkus Microprofile:** Enables MicroProfile specifications such as RESTEasy, JSON-B, and more.
+- **REST Assured:** Used for sending HTTP requests in integration tests.
+- **JUnit 5:** For writing and executing tests.
+- **Groovy (optional):** For test scripting if needed.
 
